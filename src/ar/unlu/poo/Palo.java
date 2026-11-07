@@ -1,6 +1,6 @@
 package ar.unlu.poo;
 
-public enum Palos {
+public enum Palo {
     PICAS,
     CORAZONES,
     DIAMANTES,

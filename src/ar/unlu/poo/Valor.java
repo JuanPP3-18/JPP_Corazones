@@ -6,7 +6,7 @@ package ar.unlu.poo;
 // que arranquen con letras, por numeros no pueden arrancar
 
 
-public enum Valores{
+public enum Valor {
     DOS(2),
     TRES(3),
     CUATRO(4),
@@ -24,7 +24,7 @@ public enum Valores{
     private final int valorNumerico;
 
     // Constructor del enum
-    Valores(int valorNumerico) {
+    Valor(int valorNumerico) {
         this.valorNumerico = valorNumerico;
     }
 
