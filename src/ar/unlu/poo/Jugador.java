@@ -8,7 +8,7 @@ public class Jugador {
     private List<Carta> mano;
     private List<Carta> cartasGanadas;
     private Puntaje puntaje;
-    private  int indiceJugador;
+    private int indiceJugador;
 
 
     public Jugador(String nombre){
@@ -28,6 +28,10 @@ public class Jugador {
 
     public Puntaje getPuntaje(){
         return this.puntaje;
+    }
+
+    public void sumarPuntaje(int puntos){
+        this.puntaje.sumarPuntosRonda(puntos);
     }
 
     public void recibirCarta(Carta carta){
@@ -58,6 +62,10 @@ public class Jugador {
 
     public void setIndiceJugador(int indiceJugador){
         this.indiceJugador = indiceJugador;
+    }
+
+    public int getIndiceJugador(){
+        return this.indiceJugador;
     }
 
     public boolean unCorazonGanado(){
