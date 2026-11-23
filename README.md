@@ -1,4 +1,9 @@
-# Corazones (Hearts)
+# Corazones 
+
+---
+## Alumno
+- Penela Juan Pablo 
+- 195189
 
 Implementación en Java del clásico juego de cartas **Corazones**, con arquitectura MVC y patrón Observer, jugable por consola.
 
