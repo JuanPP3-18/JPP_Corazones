@@ -1,4 +1,4 @@
-package ar.unlu.poo;
+package ar.unlu.poo.Modelo;
 
 import java.util.ArrayList;
 import java.util.Collections;

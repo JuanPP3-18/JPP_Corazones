@@ -1,4 +1,4 @@
-package ar.unlu.poo;
+package ar.unlu.poo.Modelo;
 
 public class Puntaje {
     private int puntajeRonda;
@@ -26,7 +26,7 @@ public class Puntaje {
         this.puntajeRonda = 0;
     }
 
-    public void reinciarPartida(){
+    public void reiniciarPartida(){
         this.puntajeTotal = 0;
         this.puntajeRonda = 0;
     }

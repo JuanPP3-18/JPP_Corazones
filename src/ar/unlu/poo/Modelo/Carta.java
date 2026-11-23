@@ -1,4 +1,4 @@
-package ar.unlu.poo;
+package ar.unlu.poo.Modelo;
 
 //-------------------ANOTACIONES-----------------
 //la idea de asignar los atributos privados es para que no se puedan modificar de forma externa los distintos
@@ -35,8 +35,8 @@ public class Carta {
         return (this.palo == Palo.PICAS && this.valor == Valor.REINA);
     }
 
-    public boolean es2DePicas(){
-        return (this.palo == Palo.PICAS && this.valor == Valor.DOS);
+    public boolean es2DeTreboles(){
+        return (this.palo == Palo.TREBOLES && this.valor == Valor.DOS);
     }
 
     @Override

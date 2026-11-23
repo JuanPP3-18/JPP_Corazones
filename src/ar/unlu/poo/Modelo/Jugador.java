@@ -1,10 +1,10 @@
-package ar.unlu.poo;
+package ar.unlu.poo.Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Jugador {
-    public String nombre;
+    private String nombre;
     private List<Carta> mano;
     private List<Carta> cartasGanadas;
     private Puntaje puntaje;
@@ -22,12 +22,20 @@ public class Jugador {
         return this.mano;
     }
 
+    public Carta getCarta(int indice){
+        return mano.get(indice);
+    }
+
     public List<Carta> getCartasGanadas(){
         return this.cartasGanadas;
     }
 
     public Puntaje getPuntaje(){
         return this.puntaje;
+    }
+
+    public String getNombre(){
+        return this.nombre;
     }
 
     public void sumarPuntaje(int puntos){
@@ -41,6 +49,7 @@ public class Jugador {
     public void jugarCarta(Carta carta){
         this.mano.remove(carta);
     }
+
 
     public void agregarCartasGanadas(List<Carta> cartasGanadas){
         this.cartasGanadas.addAll(cartasGanadas);           //el addAll sirve para colecciones
@@ -80,6 +89,15 @@ public class Jugador {
     public boolean soloTieneCorazones() {
         for (Carta c : mano){
             if (c.getPalo() != Palo.CORAZONES){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean soloTieneCartasDePuntos() {
+        for (Carta c : mano){
+            if(c.getPalo() != Palo.CORAZONES || (c.getPalo() != Palo.PICAS && c.getValoresNumericos() != 13)){
                 return false;
             }
         }

@@ -1,4 +1,4 @@
-package ar.unlu.poo;
+package ar.unlu.poo.Modelo;
 //-------------------ANOTACIONES-----------------
 // La idea es que una carta no cambie de valor, ni siquiera mediante getters, entonces se define una variable
 // de tipo private final, para que nadie pueda modificarla una vez creada

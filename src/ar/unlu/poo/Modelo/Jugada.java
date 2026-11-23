@@ -1,7 +1,4 @@
-package ar.unlu.poo;
-
-import java.util.ArrayList;
-import java.util.List;
+package ar.unlu.poo.Modelo;
 
 public class Jugada {
     private Carta carta;
