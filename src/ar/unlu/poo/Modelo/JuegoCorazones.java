@@ -69,37 +69,6 @@ public class JuegoCorazones implements IObservable {
         return 0;
     }
 
-    public boolean esJugadaValida(Jugador jugador, Carta carta){
-        List<Carta> cartas =  jugador.getMano();
-
-        //si es la primer mano de la partida
-        if (mesa.esPrimeraMano()){
-            //el jugador obligatoriamente debe jugar el 2 de treboles
-            if (jugador.getMano().size() == 13) {
-                return carta.es2DeTreboles();
-            }
-            //no puede abrir con conrazones si todavia no se jugaron
-            if (carta.getPalo() == Palo.CORAZONES && !this.cartaCorazonesJugada && !jugador.soloTieneCorazones()) {
-                return false;
-            }
-            return true;
-        }
-
-        Palo paloSalida = mesa.getPaloDeSalida();
-        if (jugador.tienePalo(paloSalida)) {
-            return carta.getPalo() == paloSalida;
-        }
-
-        if (jugador.getMano().size() == 13) {
-            boolean esCartaDePuntos = carta.getPalo() == Palo.CORAZONES || carta.esReinaDePicas();
-            if (esCartaDePuntos && !jugador.soloTieneCartasDePuntos()) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public Jugador getUltimoJugadorQueJugo() {
         return this.ultimoJugadorQueJugo;
     }
@@ -202,7 +171,7 @@ public class JuegoCorazones implements IObservable {
 
     public void setIndiceJugadorActual(int indice){
         if (indice < 0 || indice >= this.jugadores.size()) {
-            throw new IllegalArgumentException("Índice de jugador fuera de rango: " + indice);
+            throw new IllegalArgumentException("Indice de jugador fuera de rango: " + indice);
         }
         this.indiceJugadorActual = indice;
     }
@@ -217,6 +186,43 @@ public class JuegoCorazones implements IObservable {
 
     public List<Jugador> getJugadores(){
         return this.jugadores;
+    }
+
+    public String getMotivoJugadaInvalida(Jugador jugador, Carta carta) {
+        // La mesa está vacía: el jugador abre la mano
+        if (mesa.esPrimeraMano()) {
+            if (jugador.getMano().size() == 13) {
+                if (!carta.es2DeTreboles()) {
+                    return "En la primera mano debés empezar con el 2 de Treboles.";
+                }
+                return null;
+            }
+            if (carta.getPalo() == Palo.CORAZONES && !cartaCorazonesJugada && !jugador.soloTieneCorazones()) {
+                return "No podes abrir con Corazones hasta que se haya jugado alguno.";
+            }
+            return null;
+        }
+
+        Palo paloSalida = mesa.getPaloDeSalida();
+        if (jugador.tienePalo(paloSalida)) {
+            if (carta.getPalo() != paloSalida) {
+                return "Tenes que tirar una carta de " + paloSalida + ".";
+            }
+            return null;
+        }
+
+        // No tiene el palo de salida: en la primera mano no puede tirar cartas con puntos
+        if (jugador.getMano().size() == 13) {
+            boolean esCartaDePuntos = carta.getPalo() == Palo.CORAZONES || carta.esReinaDePicas();
+            if (esCartaDePuntos && !jugador.soloTieneCartasDePuntos()) {
+                return "En la primera mano no se pueden tirar cartas con puntos (Corazones ni la Reina de Picas).";
+            }
+        }
+        return null;
+    }
+
+    public boolean esJugadaValida(Jugador jugador, Carta carta) {
+        return getMotivoJugadaInvalida(jugador, carta) == null;
     }
 
     @Override

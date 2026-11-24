@@ -28,14 +28,16 @@ public class ControladorConsola implements IObservador {
             while (!juego.esFinDePartida()){
                 Jugador jugador = juego.getJugadorActual();
                 Carta carta;
+                String motivo;
                 do {
                     vista.mostrarMano(jugador);
                     int indice = vista.pedirIndiceCarta(jugador, jugador.getMano().size());
                     carta = jugador.getCarta(indice);
-                    if (!juego.esJugadaValida(jugador, carta)) {
-                        vista.mostrarMensaje("La carta jugada no es valida");
+                    motivo = juego.getMotivoJugadaInvalida(jugador,carta);
+                    if (motivo != null) {
+                        vista.mostrarMensaje(motivo);
                     }
-                } while (!juego.esJugadaValida(jugador, carta));
+                } while (motivo != null);
                 juego.jugarTurno(jugador,carta);
 
                 if (juego.esFinDeMano()){
