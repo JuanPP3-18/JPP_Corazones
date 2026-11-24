@@ -185,7 +185,7 @@ public class JuegoCorazones implements IObservable {
     }
 
     public List<Jugador> getJugadores(){
-        return this.jugadores;
+        return new ArrayList<>(this.jugadores);
     }
 
     public String getMotivoJugadaInvalida(Jugador jugador, Carta carta) {

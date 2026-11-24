@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class VistaConsola {
     private final Scanner sc;
-    private final Scanner scanner = new Scanner(System.in);
 
     public VistaConsola() {
         this.sc = new Scanner(System.in);
@@ -149,7 +148,7 @@ public class VistaConsola {
 
     public String limpiarConsola(String mensaje){
         System.out.print(mensaje);
-        String entrada = scanner.nextLine();
+        String entrada = sc.nextLine();
         // Si querés limpiar solo cuando ingresaron algo (no vacío):
         if (!entrada.trim().isEmpty()) {
             for (int i = 0; i < 40; i++) {

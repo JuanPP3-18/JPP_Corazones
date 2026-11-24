@@ -19,7 +19,7 @@ public class Jugador {
     }
 
     public List<Carta> getMano(){
-        return this.mano;
+        return new ArrayList<>(this.mano);
     }
 
     public Carta getCarta(int indice){
@@ -27,7 +27,7 @@ public class Jugador {
     }
 
     public List<Carta> getCartasGanadas(){
-        return this.cartasGanadas;
+        return new ArrayList<>(cartasGanadas);
     }
 
     public Puntaje getPuntaje(){
@@ -97,7 +97,7 @@ public class Jugador {
 
     public boolean soloTieneCartasDePuntos() {
         for (Carta c : mano){
-            if(c.getPalo() != Palo.CORAZONES || (c.getPalo() != Palo.PICAS && c.getValoresNumericos() != 13)){
+            if(!c.esCorazones() && !c.esReinaDePicas()){
                 return false;
             }
         }
